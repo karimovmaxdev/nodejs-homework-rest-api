@@ -11,8 +11,8 @@ const validation = require(validationPath)
 router.get('/', controllsContacts.getAll)
 router.get('/:contactId', controllsContacts.getById)
 router.post('/', validation.postValidation, controllsContacts.postNewContact)
-router.delete('/:contactId', controllsContacts.deleteById)
 router.patch('/:contactId', validation.patchValidation, controllsContacts.patchContactById)
+router.delete('/:contactId', controllsContacts.deleteById)
 
 
 module.exports = router
