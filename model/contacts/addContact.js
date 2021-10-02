@@ -1,19 +1,8 @@
-const fs = require('fs/promises')
-const contactsPath = require('path').resolve('./db/contacts.json')
+const {contact} = require('./schema/contactSchema')
 
-const { listContacts } = require('./getListContacts.js')
-
-const addContact = async ({ name, email, phone }) => {
-  const contacts = await listContacts()
-  const id = contacts[contacts.length - 1].id + 1
-  const newContact = {
-    id,
-    name,
-    email,
-    phone,
-  }
-
-  await fs.writeFile(contactsPath, JSON.stringify([...contacts, newContact], null, 2), 'utf-8');
+const addContact = async ({ name, email, phone, favorite }) => {
+  const newContact = await contact({ name, email, phone, favorite })
+  await newContact.save()
   return newContact
 }
 

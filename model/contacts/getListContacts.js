@@ -1,9 +1,8 @@
-const fs = require('fs/promises')
-const contactsPath = require('path').resolve('./db/contacts.json')
+const {contact} = require('./schema/contactSchema')
 
 const listContacts = async () => {
-  const contacts = await fs.readFile(contactsPath, 'utf-8')
-  return JSON.parse(contacts)
+  const contactsList = await contact.find()
+  return contactsList
 }
 
 module.exports = {

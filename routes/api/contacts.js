@@ -12,6 +12,7 @@ router.get('/', controllsContacts.getAll)
 router.get('/:contactId', controllsContacts.getById)
 router.post('/', validation.postValidation, controllsContacts.postNewContact)
 router.patch('/:contactId', validation.patchValidation, controllsContacts.patchContactById)
+router.patch('/:contactId/favorite', validation.patchContactStatusValidation, controllsContacts.patchContactStatus)
 router.delete('/:contactId', controllsContacts.deleteById)
 
 

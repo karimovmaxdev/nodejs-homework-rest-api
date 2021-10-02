@@ -1,7 +1,9 @@
 const { postValidation } = require('./postValidation')
-const {patchValidation} = require('./patchValidation')
+const { patchValidation, patchContactStatusValidation } = require('./patchValidation')
+// const { patchFavoriteFieldValidation} = require('./patchFavoriteFieldValidation')
 
 module.exports = {
     postValidation,
-    patchValidation
+    patchValidation,
+    patchContactStatusValidation
 }
