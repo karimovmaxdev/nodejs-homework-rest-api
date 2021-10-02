@@ -7,10 +7,12 @@ const postSchema = new mongoose.Schema({
     },
     email: {
       type: String,
+      required: true
     },
     phone: {
       type: String,
-      match: /^[0-9]{0,11}$/
+      match: /^[0-9]{0,11}$/,
+      required: true
     },
     favorite: {
       type: Boolean,
