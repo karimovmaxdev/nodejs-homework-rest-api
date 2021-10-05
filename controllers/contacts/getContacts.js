@@ -16,7 +16,6 @@ const getAll = async (req, res, next) => {
 const getById = async (req, res, next) => {
   try {
     const contact = await getContactById(req.params.contactId)
-    
     if (!contact) {
       res.status(404).json({ message: "Not found" })
       return
@@ -26,6 +25,9 @@ const getById = async (req, res, next) => {
 
   }
   catch (error) {
+    if (error.kind === "ObjectId") {
+    res.status(404).json({message: 'not found'})
+  }
     next(error)
   }
 }

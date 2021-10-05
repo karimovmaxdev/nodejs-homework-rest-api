@@ -1,9 +1,7 @@
-const {listContacts} = require('./getListContacts.js')
+const {contact} = require('./schema/contactSchema')
 
 const getContactById = async (contactId) => {
-  const contacts = await listContacts()
-  const [foundContact] = contacts.filter(it => it.id === Number(contactId))
-
+  const foundContact = await contact.findById(contactId)
   return foundContact
 }
 
