@@ -19,9 +19,6 @@ app.use((req, res) => {
 })
 
 app.use((err, req, res, next) => {
-  if (err.kind === "ObjectId") {
-    res.json({message: 'IDI  OTSUDA'})
-  }
   res.status(500).json({ message: err.message })
 })
 
