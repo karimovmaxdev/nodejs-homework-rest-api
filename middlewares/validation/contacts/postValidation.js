@@ -9,7 +9,6 @@ const postScheme = Joi.object({
 
 const postValidation = async (req, res, next) => {
     try {
-        console.log(req.body)
         const { error } = postScheme.validate(req.body)
         if (error) {
             res.status(400).json({ message: "missing required name field" })

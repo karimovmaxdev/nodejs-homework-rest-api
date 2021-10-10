@@ -3,7 +3,7 @@ const Joi = require('joi')
 const patchScheme = Joi.object({
   email: Joi.string(),
   name: Joi.string(),
-  phone: Joi.string().pattern(new RegExp('^[0-9]$'))  
+  phone: Joi.string().pattern(new RegExp('^[0-9]{0,11}$'))  
 })
 
 const contactStatusSchema = Joi.object({
@@ -37,7 +37,7 @@ const patchContactStatusValidation = async (req, res, next) => {
         const { error } = contactStatusSchema.validate(req.body)
 
         if (error) {
-            res.status(400).json({ message: "missing field favorite" })
+            res.status(400).json({ message: "error of fields names or values" })
             return    
         }
         

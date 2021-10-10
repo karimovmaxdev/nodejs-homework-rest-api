@@ -1,3 +1,4 @@
+const { string } = require('joi')
 const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
@@ -21,6 +22,10 @@ const postSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default: Date.now()
+    },
+    owner: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'user',
     }
 })
 
