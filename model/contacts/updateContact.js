@@ -1,8 +1,8 @@
 const {contact} = require('./schema/contactSchema')
 
-const updateContact = async (contactId, body) => {
-  await contact.findByIdAndUpdate(contactId, { $set: body })
-  return contact.findById(contactId)
+const updateContact = async (contactId, body, owner) => {
+  await contact.findByIdAndUpdate({ _id: contactId, owner }, { $set: body })
+  return contact.findOne({ _id: contactId, owner })
 }
 
 

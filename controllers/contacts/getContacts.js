@@ -1,8 +1,8 @@
 const { listContacts, getContactById } = require('../../model/contacts')
 
 const getAll = async (req, res, next) => {
-    try {
-        const allContacts = await listContacts()
+  try {
+        const allContacts = await listContacts(req.user.id)
         res
         .status(200)
         .json(allContacts)
@@ -15,7 +15,8 @@ const getAll = async (req, res, next) => {
     
 const getById = async (req, res, next) => {
   try {
-    const contact = await getContactById(req.params.contactId)
+    const owner = req.user.id
+    const contact = await getContactById(req.params.contactId, owner)
     if (!contact) {
       res.status(404).json({ message: "Not found" })
       return
@@ -26,8 +27,9 @@ const getById = async (req, res, next) => {
   }
   catch (error) {
     if (error.kind === "ObjectId") {
-    res.status(404).json({message: 'not found'})
-  }
+      res.status(404).json({ message: 'not found' })
+      return
+    }
     next(error)
   }
 }
