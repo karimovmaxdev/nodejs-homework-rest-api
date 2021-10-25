@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const authentication = async ({ password, email }) => {
-    const account = await user.findOne({ email })
+    const account = await user.findOne({ email, verify: true })
     if (!account) {
         return account
     }
