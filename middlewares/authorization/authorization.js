@@ -16,6 +16,7 @@ const authorization = async (req, res, next) => {
         }
 
         const currentUser = await user.findById(decodeUser.id)
+
         if (currentUser.token !== token) {
             throw new Unauthorized('not auhtorized')
         }
